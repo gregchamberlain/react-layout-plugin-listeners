@@ -1,5 +1,5 @@
 {
-  "name": "react-component-boilerplate",
+  "name": "react-layout-plugin-listeners",
   "version": "0.1.0",
   "description": "A simple responsive sidebar component for React",
   "keywords": [
@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gregchamberlain/react-component-boilerplate.git"
+    "url": "git+https://github.com/gregchamberlain/react-layout-plugin-listeners.git"
   },
   "author": "Greg Chamberlain <gregchamberlain94@gmail.com> (https://gregchamberlain.github.io)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gregchamberlain/react-component-boilerplate/issues"
+    "url": "https://github.com/gregchamberlain/react-layout-plugin-listeners/issues"
   },
-  "homepage": "https://github.com/gregchamberlain/react-component-boilerplate#readme",
+  "homepage": "https://github.com/gregchamberlain/react-layout-plugin-listeners#readme",
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-core": "^6.5.2",
@@ -46,13 +46,17 @@
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.3.0",
     "react-hot-loader": "^3.0.0-beta.6",
+    "react-layout-core": "^0.5.2",
     "react-test-renderer": "^15.4.2",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0"
   },
   "peerDependencies": {
     "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "react-dom": "^15.3.0",
+    "react-layout-plugin-refs": "^0.5.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "hoist-non-react-statics": "^2.3.0"
+  }
 }

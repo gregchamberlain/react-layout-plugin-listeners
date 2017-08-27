@@ -1,42 +1,55 @@
-# React Component Boilerplate
+# React Layout Plugin Listeners
 
-A boilerplate project to get started building modular React components, and deploying them to NPM.
+```
+yarn install react-layout-plugin-listeners
+```
 
-## Getting started
+or
 
-1. `git clone https://github.com/gregchamberlain/react-component-boilerplate.git`
-2. cd into project
-3. `git remote remove origin`
-4. `git remote add origin <your-git-remote-url>`
-5. `yarn install` or `npm install`
-6. Update package.json with relevant information (name, description, keywords, repository, author, license, bugs, homepage)
+```
+npm install react-layout-plugin-listeners
+```
 
+## Usage
 
-## Development
+This plugin uses [react-layout-plugin-refs](https://github.com/gregchamberlain/react-layout-plugin-refs). It must be passed as a plugin before the Listeners plugin.
 
-The development environment is already setup and ready to go (hot-loading and linting included!)
+```js
+import React, { Component } from 'react';
+import { Layout, LayoutState } from 'react-layout-core';
+import RefsPlugin from 'react-layout-plugin-refs';
+import createListenersPlugin from 'react-layout-plugin-listeners';
 
-1. Build only your library component/components in /src folder (this is what will be published to npm)
-2. Rendering for testing/development should be done in /site/src (this can also be used as a static site for examples, docs, etc.)
-3. `yarn start` or `npm start`
+class MyComponent extends Component {
 
-## Testing
+  constructor(prop) {
+    super(props);
+    this.ListenerPlugin = createListenerPlugin({
+      click: this.onItemClicked
+    });
+    this.state = {
+      layoutState: new LayoutState('div')
+    };
+  }
 
-Tests are written in the `/test` directory, using [Jest](https://facebook.github.io/jest), and [enzyme](https://github.com/airbnb/enzyme)
+  onItemClicked = ({ e, key }) => {
+    // Do something when an Item is clicked.
+  }
 
-## Publishing to npm
+  render() {
+    return (
+      <Layout
+        layoutState={this.state.layoutState}
+        plugins={[RefsPlugin, this.ListenerPlugin]}
+      />
+    );
+  }
+}
 
-1. Ensure correct information in package.json
-2. `npm publish` (this will build the project, then publish it)
+export default MyComponent;
+```
 
-## Building the static site for deployment
+The default export of this package is a factory function that will return the plugin when passed a `Object` handlers. This `Object` should be structures with `event` names as keys and handler functions as values.
 
-The code in /site can be build into a static site and deployed (examples, docs, etc. are a great use case!)
-
-1. `npm run buildSite`
-
-### Using github-pages
-
-1. From repo page Settings => Github Pages, set Source to `master branch`
-2. `npm run buildSite`
-2. `git push origin master`
+## Handler functions
+The handler functions passed to `createListenersPlugin` will be called with and `Object` containing `e`, the event, and `key`, the `ItemKey` of the `Item` that triggered the event.
