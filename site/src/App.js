@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import createListenersPlugin from '../../src';
 import Refs from 'react-layout-plugin-refs';
 import { Layout, LayoutState } from 'react-layout-core'; 
+import { actions } from 'react-layout-plugin-edit';
 
 const rVal = () => Math.floor(Math.random() * 255);
 
@@ -36,12 +37,21 @@ class App extends PureComponent {
     console.log(key.toJS());
   }
 
+  addItem = (e) => {
+    const item = this.state.layoutState.createItem({ type: 'div', props: { style: createStyle() } });
+    const layoutState = actions.insertItem(this.state.layoutState, { item, parentKey: LayoutState.ROOT_KEY, index: 0 });
+    this.setState({ layoutState });
+  }
+
   render() {
     return (
-      <Layout
-        layoutState={this.state.layoutState}
-        plugins={[Refs, this.ListenerPlugin]}
-      />
+      <div>
+        <button onClick={this.addItem}>Add Item</button>
+        <Layout
+          layoutState={this.state.layoutState}
+          plugins={[Refs, this.ListenerPlugin]}
+        />
+      </div>
     );
   }
 }

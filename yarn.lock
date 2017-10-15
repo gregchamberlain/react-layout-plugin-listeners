@@ -3786,6 +3786,10 @@ react-layout-core@^0.5.2:
     react-redux "^5.0.5"
     redux "^3.6.0"
 
+react-layout-plugin-edit@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-layout-plugin-edit/-/react-layout-plugin-edit-0.5.0.tgz#ae9554a832f65de73c34e41f45294f3e7801a809"
+
 react-layout-plugin-refs@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/react-layout-plugin-refs/-/react-layout-plugin-refs-0.5.0.tgz#416872bb5682cc48bac90d6be4e125976447074b"

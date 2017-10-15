@@ -21,13 +21,15 @@ const Wrapper = (listenerMap) => (WrappedComponent, displayName) => {
     }
 
     setNode = (node) => {
-      this.unlisten(this.node);
-      this.listen(node);
+      if (node && this.node !== node) {
+        this.node = node;
+        this.unlisten(this.node);
+        this.listen(node);
+      }
     }
 
     listen = (node) => {
       if (node) {
-        console.log('listen', this.props['data-id'].key);
         Object.keys(listenerMap).forEach((key) => {
           node.addEventListener(key, this.getListener(key))
         });
@@ -36,7 +38,6 @@ const Wrapper = (listenerMap) => (WrappedComponent, displayName) => {
     
     unlisten = (node) => {
       if (node) {
-        console.log('unlisten', this.props['data-id'].key);
         Object.keys(listenerMap).forEach((key) => {
           node.removeEventListener(key, this.getListener(key));
         });
